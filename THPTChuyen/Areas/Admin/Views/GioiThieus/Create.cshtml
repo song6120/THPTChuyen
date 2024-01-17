@@ -1,0 +1,60 @@
+﻿@model THPTChuyen.Models.GioiThieu
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm(Html.BeginForm("Create", "GioiThieus", FormMethod.Post, new { enctype = "multipart/form-data" })))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>GioiThieu</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.LichSuPhatTrien, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.LichSuPhatTrien, new { htmlAttributes = new { @class = "ckeditor" }, id = "noiDung" })
+                @Html.ValidationMessageFor(model => model.LichSuPhatTrien, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.NhiemVu, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.NhiemVu, new { htmlAttributes = new { @class = "ckeditor" }, id = "noiDung2" })
+                @Html.ValidationMessageFor(model => model.NhiemVu, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PhanCong, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.PhanCong, new { htmlAttributes = new { @class = "ckeditor" }, id = "noiDung3" })
+                @Html.ValidationMessageFor(model => model.PhanCong, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+@section scripts{
+    <script>
+        CKEDITOR.replace("noiDung");
+        CKEDITOR.replace("noiDung2");
+        CKEDITOR.replace("noiDung3");
+    </script>
+
+}

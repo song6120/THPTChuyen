@@ -1,0 +1,190 @@
+﻿@model THPTChuyen.Models.HomeModel
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .styled-table {
+        border-collapse: collapse;
+        margin: 25px 0;
+        font-size: 0.9em;
+        font-family: sans-serif;
+        width: 1050px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    }
+
+        .styled-table thead tr {
+            background-color: #009879;
+            color: #ffffff;
+            text-align: left;
+        }
+
+        .styled-table th,
+        .styled-table td {
+            padding: 12px 15px;
+            color:black;
+        }
+
+        .styled-table tbody tr {
+            border-bottom: 1px solid #dddddd;
+        }
+
+            .styled-table tbody tr:nth-of-type(even) {
+                background-color: #f3f3f3;
+            }
+
+            .styled-table tbody tr:last-of-type {
+                border-bottom: 2px solid #009879;
+            }
+
+            .styled-table tbody tr.active-row {
+                font-weight: bold;
+                color: #009879;
+            }
+    .title_chucvu {
+        width: 100%;
+        height: 45px;
+        background: #3171b9;
+        font-size:20px;
+        color:white;
+        text-align:center
+    }
+</style>
+<div class="container-sidebar">
+    <div class="box-img">
+        <img class="banner-img" src="~/Content/Main/image/bander.jpg" alt="" />
+    </div>
+    <div class="container-menu">
+        <div class="dropdown">
+            <button class="dropbtn"><a href="@Url.Content("~/Home/Index")"><i class="fa-solid fa-house"></i></a></button>
+        </div>
+        <div class="dropdown">
+            <button class="dropbtn"><a href="#">Giới thiệu</a></button>
+            <div class="dropdown-content">
+                <a href="@Url.Content("~/GioiThieu/Index")">Lịch sử phát triển</a>
+                <a href="@Url.Content("~/GioiThieu/nhiemvu")">Chức năng - nhiệm vụ</a>
+                <a href="@Url.Content("~/GioiThieu/phancong")">Phân công nhiệm vụ</a>
+            </div>
+        </div>
+        <div class="dropdown">
+            <button class="dropbtn"><a href="#">Tổ chức</a></button>
+            <div class="dropdown-content">
+                @foreach (var item in Model.listToChuc)
+                {
+                    @Html.ActionLink(item.TenToChuc, "Index", "GiaoVien", new { @id = item.MaToChuc }, null)
+                }
+            </div>
+        </div>
+        <div class="dropdown">
+            <button class="dropbtn"><a href="#">Tin tức</a></button>
+            <div class="dropdown-content">
+                @foreach (var item in Model.listLoaitintuc)
+                {
+                    @Html.ActionLink(item.TenLoai, "Index", "TinTuc", new { @id = item.MaLoaiTin }, null)
+                }
+            </div>
+        </div>
+        <div class="dropdown">
+            <button class="dropbtn"><a href="#">Văn bản</a></button>
+            <div class="dropdown-content">
+                @foreach (var item in Model.listLoaivanban)
+                {
+                    @Html.ActionLink(item.TenLoaiVanBan, "Index", "VanBan", new { @id = item.MaLoaiVanBan }, null)
+                }
+            </div>
+        </div>
+        <div class="dropdown">
+            <button class="dropbtn"><a href="#">Đề thi</a></button>
+            <div class="dropdown-content">
+                <a href="#">Đề thi học kỳ và chuyên môn</a>
+                <a href="#">Thi thử đại học</a>
+            </div>
+        </div>
+        <div class="dropdown">
+            <button class="dropbtn"><a href="@Url.Content("~/HinhAnh/Index")">Hình ảnh</a></button>
+        </div>
+        <div class="dropdown">
+            <button class="dropbtn"><a href="#">Thành viên</a></button>
+            <div class="dropdown-content">
+                <a href="#">Đăng nhập</a>
+                <a href="#">Đăng ký</a>
+            </div>
+        </div>
+        <div class="dropdown">
+            <button class="dropbtn"><a href="#">Liên hệ</a></button>
+        </div>
+        <div class="dropdown">
+            <button class="dropbtn"><a href="#">Kỷ yếu 50 năm</a></button>
+        </div>
+    </div>
+    <div class="date-search">
+        <div class="date-time" id="date"></div>
+        <div class="search">
+            <input class="input-search" type="text" placeholder="Tìm kiếm...">
+            <button type="button" class="button-search"><i class="fa-solid fa-magnifying-glass"></i></button>
+        </div>
+    </div>
+</div>
+<div style="height: 500px">
+    <div class="title_chucvu">
+        @foreach (var item in Model.loaivb.Take(1))
+        {
+            <h1 style="padding-top:10px">@item.TenLoaiVanBan</h1>
+        }
+    </div>
+    <table class="styled-table">
+        <tr>
+            <th>
+                Tiêu đề
+            </th>
+            <th>
+                Số hiệu
+            </th>
+            <th>
+                Ngày ban hành
+            </th>
+            <th>
+                Ngày hiệu lực
+            </th>
+            <th>
+                Người ký
+            </th>
+            <th>
+                Tệp
+            </th>
+            <th>
+                Thể loại
+            </th>
+        </tr>
+
+        @foreach (var item in Model.listVanban)
+        {
+            <tr>
+                <td>
+                    <a class="link_vb" style="color:black" href="@Url.Content("~/VanBan/Chitiet")/@item.MaVanBan">@item.TieuDe</a>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.KiHieu)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NgayBanHanh)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NgayHieuLuc)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NguoiKy)
+                </td>
+                <td>
+                    <a style="color:black" href="~/UploadFile/File/@Html.DisplayFor(modelItem => item.DuongDan)" download="@Html.DisplayFor(modelItem => item.DuongDan)"><i class="fa-solid fa-download"></i></a>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LoaiVanBan.TenLoaiVanBan)
+                </td>
+            </tr>
+        }
+</table>
+</div>
+
+

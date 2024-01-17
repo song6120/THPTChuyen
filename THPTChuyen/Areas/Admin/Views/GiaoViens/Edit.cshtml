@@ -1,0 +1,119 @@
+﻿@model THPTChuyen.Models.GiaoVien
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Sửa giáo viên</h2>
+
+@using (Html.BeginForm("Edit", "GiaoViens", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.MaGiaoVien)
+
+    <div class="form-group">
+        Họ tên
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.TenGiaoVien, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.TenGiaoVien, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        Avatar
+        <div class="col-md-10">
+            @Html.TextBox("file1", "", new { type = "file" })
+        </div>
+    </div>
+    <div class="form-group">
+        Ngày sinh
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.NgaySinh, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.NgaySinh, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        Quê quán
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.QueQuan, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.QueQuan, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        Địa chỉ
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.DiaChi, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.DiaChi, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        Điện thoại
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.SDT, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.SDT, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        Email
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        Tốt nghiệp năm
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.TotNghiep, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.TotNghiep, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        Chuyên ngành
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.ChuyenNganh, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.ChuyenNganh, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        Công tác năm
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.CongTacNam, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.CongTacNam, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        Chức vụ
+        <div class="col-md-10">
+            @Html.DropDownList("MaChucVu", null, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.MaChucVu, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        Tổ chức
+        <div class="col-md-10">
+            @Html.DropDownList("MaToChuc", null, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.MaToChuc, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Lưu" class="btn btn-default" /> &emsp;
+            <button type="submit" class="btn btn-default">@Html.ActionLink("Trở về", "Index")</button>
+        </div>
+    </div>
+</div>
+}

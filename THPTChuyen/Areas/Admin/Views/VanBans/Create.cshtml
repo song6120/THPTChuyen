@@ -1,0 +1,82 @@
+﻿@model THPTChuyen.Models.VanBan
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Thêm văn bản</h2>
+
+@using (Html.BeginForm("Create", "VanBans", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            Tiêu đề
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TieuDe, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TieuDe, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            Kí hiệu
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.KiHieu, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.KiHieu, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            Ngày ban hành
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.NgayBanHanh, new { htmlAttributes = new { @class = "form-control", type = "date" } })
+                @Html.ValidationMessageFor(model => model.NgayBanHanh, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            Ngày hiệu lực
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.NgayHieuLuc, new { htmlAttributes = new { @class = "form-control" , type= "date"}  })
+                <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+                @Html.ValidationMessageFor(model => model.NgayHieuLuc, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            Loại văn bản
+            <div class="col-md-10">
+                @Html.DropDownList("MaLoaiVanBan", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.MaLoaiVanBan, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            Người ký
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.NguoiKy, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.NguoiKy, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            Nội dung
+            <div class="col-md-10">
+                @Html.TextBox("file1", "", new { type = "file" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Thêm" class="btn btn-default" /> &emsp;
+                <button type="submit" class="btn btn-default">@Html.ActionLink("Trở về", "Index")</button>
+            </div>
+        </div>
+    </div>
+}

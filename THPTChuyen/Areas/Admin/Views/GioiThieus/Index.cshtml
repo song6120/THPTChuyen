@@ -1,0 +1,65 @@
+﻿@model IEnumerable<THPTChuyen.Models.GioiThieu>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Giới thiệu trường</h2>
+<style>
+    .styled-table {
+        border-collapse: collapse;
+        margin: 25px 0;
+        font-size: 0.9em;
+        font-family: sans-serif;
+        width: 100%;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    }
+
+        .styled-table thead tr {
+            background-color: #009879;
+            color: #ffffff;
+            text-align: left;
+        }
+
+        .styled-table th,
+        .styled-table td {
+            padding: 12px 15px;
+        }
+
+        .styled-table tbody tr {
+            border-bottom: 1px solid #dddddd;
+        }
+
+            .styled-table tbody tr:nth-of-type(even) {
+                background-color: #f3f3f3;
+            }
+
+            .styled-table tbody tr:last-of-type {
+                border-bottom: 2px solid #009879;
+            }
+
+            .styled-table tbody tr.active-row {
+                font-weight: bold;
+                color: #009879;
+            }
+</style>
+
+@foreach (var item in Model)
+{
+    <h3 style="width:100%; background-color:burlywood; text-align:center">Lịch sử phát triển</h3>
+    @Html.Raw(@item.LichSuPhatTrien)
+    <h3 style="width: 100%; background-color: burlywood; text-align:center">Nhiệm vụ</h3>
+    @Html.Raw(@item.NhiemVu)
+    <h3 style="width: 100%; background-color: burlywood; text-align:center">Phân công</h3>
+    @Html.Raw(item.PhanCong)
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            &emsp;
+            <button type="submit" class="btn btn-default">@Html.ActionLink("Sửa", "Edit", new { id = item.MaGioiThieu })</button>
+            
+        </div>
+    </div>
+    
+}
+

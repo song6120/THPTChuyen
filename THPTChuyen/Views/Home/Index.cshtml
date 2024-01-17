@@ -1,0 +1,281 @@
+﻿@model THPTChuyen.Models.HomeModel
+@{
+    ViewBag.Title = "Trang chủ";
+}
+<div style="background-color:antiquewhite" class="container-sidebar">
+    <div class="box-img">
+        <img class="banner-img" src="~/Content/Main/image/bander.jpg" alt="" />
+    </div>
+    <div class="container-menu">
+        <div class="dropdown">
+            <button class="dropbtn"><a href=""><i class="fa-solid fa-house"></i></a></button>
+        </div>
+        <div class="dropdown">
+            <button class="dropbtn"><a href="#">Giới thiệu</a></button>
+            <div class="dropdown-content">
+                <a href="@Url.Content("~/GioiThieu/Index")">Lịch sử phát triển</a>
+                <a href="@Url.Content("~/GioiThieu/nhiemvu")">Chức năng - nhiệm vụ</a>
+                <a href="@Url.Content("~/GioiThieu/phancong")">Phân công nhiệm vụ</a>
+            </div>
+        </div>
+        <div class="dropdown">
+            <button class="dropbtn"><a href="#">Tổ chức</a></button>
+            <div class="dropdown-content">
+                @foreach (var item in Model.listToChuc)
+                {
+                    @Html.ActionLink(item.TenToChuc, "Index", "GiaoVien", new { @id = item.MaToChuc }, null)
+                }
+            </div>
+        </div>
+        <div class="dropdown">
+            <button class="dropbtn"><a href="#">Tin tức</a></button>
+            <div class="dropdown-content">
+                @foreach (var item in Model.listLoaitintuc)
+                {
+                    @Html.ActionLink(item.TenLoai, "Index", "TinTuc", new { @id = item.MaLoaiTin }, null)
+                }
+            </div>
+        </div>
+        <div class="dropdown">
+            <button class="dropbtn"><a href="#">Văn bản</a></button>
+            <div class="dropdown-content">
+                @foreach (var item in Model.listLoaivanban)
+                {
+                    @Html.ActionLink(item.TenLoaiVanBan, "Index", "VanBan", new { @id = item.MaLoaiVanBan }, null)
+                }
+            </div>
+        </div>
+        <div class="dropdown">
+            <button class="dropbtn"><a href="#">Đề thi</a></button>
+            <div class="dropdown-content">
+                <a href="#">Đề thi học kỳ và chuyên môn</a>
+                <a href="#">Thi thử đại học</a>
+            </div>
+        </div>
+        <div class="dropdown">
+            <button class="dropbtn"><a href="@Url.Content("~/HinhAnh/Index")">Hình ảnh</a></button>
+        </div>
+        <div class="dropdown">
+            <button class="dropbtn"><a href="#">Thành viên</a></button>
+            <div class="dropdown-content">
+                <a href="#">Đăng nhập</a>
+                <a href="#">Đăng ký</a>
+            </div>
+        </div>
+        <div class="dropdown">
+            <button class="dropbtn"><a href="#">Liên hệ</a></button>
+        </div>
+        <div class="dropdown">
+            <button class="dropbtn"><a href="#">Kỷ yếu 50 năm</a></button>
+        </div>
+        <div class="dropdown">
+            <button class="dropbtn"><a href="#">Danh bạ</a></button>
+        </div>
+    </div>
+    <div class="date-search">
+        <div class="date-time" id="date"></div>
+        <div class="search">
+            <input class="input-search" type="text" placeholder="Tìm kiếm...">
+            <button type="button" class="button-search"><i class="fa-solid fa-magnifying-glass"></i></button>
+        </div>
+    </div>
+</div>
+<div class="box-main">
+    <div style="margin-left: 8px;">
+        <div class="document">
+            <button class="title"><a class="title-link" href="#">Văn bản</a></button>
+            <div class="content-document">
+                @foreach (var item in Model.listVanban)
+                {
+                    <a href="@Url.Content("~/VanBan/Chitiet")/@item.MaVanBan" class="link-ducument" href="#">
+                        <h3 style="color:red"><i class="fa-solid fa-book"></i> Số: @item.KiHieu</h3>
+                        <h3 style="font-weight: bold">Tên: @item.TieuDe</h3>
+                        <p>Ngày ban hành: @item.NgayBanHanh - Ngày hiệu lực: @item.NgayHieuLuc</p>
+                    </a>
+                }
+            </div>
+        </div>
+        <div class="custom">
+            <div class="hearder"></div>
+            <div class="custom-btn">
+                <button><i class="fa-regular fa-calendar-days"></i>Lịch tuần</button>
+                <button><i class="fa-regular fa-calendar-plus"></i>Kế hoạch</button>
+                <button>
+                    <img src="~/Content/Main/image/vnEdu.png" alt="">
+                    Vnedu.vn
+                </button>
+                <button><i class="fa-solid fa-book"></i>Văn bản</button>
+            </div>
+        </div>
+        <div class="notification">
+            <button class="title"><a class="title-link" href="#">Thư viện ảnh</a></button>
+            <div class="content-notification">
+
+            </div>
+        </div>
+        <div class="statistical">
+            <button class="title"><a class="title-link" href="#">Thống kê truy cập</a></button>
+            <table class="statistical-table">
+                <tr>
+                    <th><i class="fa-solid fa-person"></i>Hiện tại:</th>
+                    <th>22</th>
+                </tr>
+                <tr>
+                    <th><i class="fa-solid fa-person"></i>Hôm nay:</th>
+                    <th>66</th>
+                </tr>
+                <tr>
+                    <th><i class="fa-solid fa-person"></i>Hôm qua:</th>
+                    <th>100</th>
+                </tr>
+                <tr>
+                    <th><i class="fa-solid fa-person"></i>Tổng:</th>
+                    <th>100000</th>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div style="margin-right: 8px;" class="container-box-main">
+        <div class="main">
+            <button class="title"><a class="title-link" href="#">Tin mới nhất</a></button>
+            <div class="content-main">
+                <div class="post-item-main">
+                    @foreach (var tin in Model.listTintuc.Take(1))
+                    {
+                        <a href="#">
+                            <img src="~/images/@tin.HinhAnh" alt="">
+                            <h3 style="font-size: 16px; font-weight:bold">@tin.TieuDe</h3>
+                        </a>
+                    }
+                </div>
+                <div class="item-main">
+                    @foreach (var item in Model.listTintuc.Take(8).Skip(1))
+                    {
+                        <p>
+                            <a href="#">
+                                <i class="fa-solid fa-file-lines"></i>
+                                @item.TieuDe
+                            </a>
+                        </p>
+                    }
+                </div>
+            </div>
+            <a class="link-main" href="#">Xem thêm</a>
+        </div>
+        <div class="Tintuc">
+            <div>
+                <img src="~/Content/Main/image/Hoctap.jpg" alt="">
+            </div>
+            <div class="tintuc-sukien">
+                <button class="title"><a class="title-link" href="#">Tin tức - Sự kiện</a></button>
+                <div class="content-tintuc-sukien">
+                    @foreach (var item in Model.listTintruong.Take(4))
+                    {
+                        <a href="@Url.Content("~/TinTuc/Chitiet")/@item.MaTinTuc">
+                            <img src="~/images/@item.HinhAnh" alt="">
+                            <h3 style="font-size: 16px; font-weight:bold">@item.TieuDe</h3>
+                        </a>
+                    }
+                </div>
+                <div style="margin-left: 20px">
+                    @Html.ActionLink("Xem thêm", "Index", "TinTuc", new { @id = 3}, null)
+                </div>
+            </div>
+        </div>
+        <div class="tin-tuc-doan">
+            <div class="Tin-cong-doan">
+                <button class="title"><a class="title-link" href="#">Tin công đoàn</a></button>
+                <div class="content-tin-cong-doan">
+                    @foreach (var item in Model.listCongdoan.Take(1))
+                    {
+                        <a class="title-tin-cong-doan" href="@Url.Content("~/TinTuc/Chitiet")/@item.MaTinTuc">
+                            <div class="img-tin-cong-doan">
+                                <img src="~/images/@item.HinhAnh" alt="">
+                            </div>
+                            <div>
+                                <h3 style="font-size:15px;font-weight:bold">@item.TieuDe</h3>
+                                <p><i class="fa-solid fa-calendar"></i> 21/12/2022</p>
+                            </div>
+                        </a>
+                    }
+                    <div class="content-chill-tin-cong-doan">
+                        @foreach (var item in Model.listCongdoan.Take(5).Skip(1))
+                        {
+                            <p>
+                                <a href="@Url.Content("~/TinTuc/Chitiet")/@item.MaTinTuc">
+                                    <i class="fa-solid fa-file-lines"></i>
+                                    @item.TieuDe
+                                </a>
+                            </p>
+                        }
+                    </div>
+                    <div style="margin-left: 20px">
+                        @Html.ActionLink("Xem thêm", "Index", "TinTuc", new { @id = 4 }, null)
+                    </div>
+                </div>
+            </div>
+            <div class="Tin-doan-truong">
+                <button class="title"><a class="title-link" href="#">Tin đoàn trường</a></button>
+                <div class="content-tin-cong-doan">
+                    @foreach (var item in Model.listDoantruong.Take(1))
+                    {
+                        <a class="title-tin-cong-doan" href="@Url.Content("~/TinTuc/Chitiet")/@item.MaTinTuc">
+                            <div class="img-tin-cong-doan">
+                                <img src="~/images/@item.HinhAnh" alt="">
+                            </div>
+                            <div>
+                                <h3 style="font-size:15px;font-weight:bold">@item.TieuDe</h3>
+                                <p><i class="fa-solid fa-calendar"></i> 21/12/2022</p>
+                            </div>
+                        </a>
+                    }
+                    <div class="content-chill-tin-cong-doan">
+                        @foreach (var item in Model.listDoantruong.Take(3).Skip(1))
+                        {
+                            <p>
+                                <a href="@Url.Content("~/TinTuc/Chitiet")/@item.MaTinTuc">
+                                    <i class="fa-solid fa-file-lines"></i>
+                                    @item.TieuDe
+                                </a>
+                            </p>
+                        }
+                    </div>
+                    <div style="margin-left: 20px">
+                        @Html.ActionLink("Xem thêm", "Index", "TinTuc", new { @id = 5 }, null)
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="tin-hoc-duong">
+            <button class="title"><a class="title-link" href="#">Tin học đường</a></button>
+            <div class="content-tintuc-sukien">
+                @foreach (var item in Model.listHocduong.Take(4))
+                {
+                    <a href="@Url.Content("~/TinTuc/Chitiet")/@item.MaTinTuc">
+                        <img src="~/images/@item.HinhAnh" alt="">
+                        <h3>@item.TieuDe</h3>
+                    </a>
+                }
+            </div>
+            <div style="margin-left: 20px">
+                @Html.ActionLink("Xem thêm", "Index", "TinTuc", new { @id = 8 }, null)
+            </div>
+        </div>
+        <div class="thi-dua-khen-thuong">
+            <button class="title"><a class="title-link" href="#">Thi đua khen thưởng</a></button>
+            <div class="content-tintuc-sukien">
+                @foreach (var item in Model.listThidua.Take(4))
+                {
+                    <a href="@Url.Content("~/TinTuc/Chitiet")/@item.MaTinTuc">
+                        <img src="~/images/@item.HinhAnh" alt="">
+                        <h3>@item.TieuDe</h3>
+                        <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+                    </a>
+                }
+            </div>
+            <div style="margin-left: 20px">
+                @Html.ActionLink("Xem thêm", "Index", "TinTuc", new { @id = 7  }, null)
+            </div>
+        </div>
+    </div>
+</div>

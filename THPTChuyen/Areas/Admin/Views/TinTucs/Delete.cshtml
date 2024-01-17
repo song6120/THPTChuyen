@@ -1,0 +1,45 @@
+﻿@model THPTChuyen.Models.TinTuc
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h3>Bạn có chắc chăn muốn xóa không?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Tiêu đề: @Html.DisplayFor(model => model.TieuDe)
+        </dt>
+
+        <dt>
+            Hình ảnh
+        </dt>
+
+        <dd>
+            <img src="~/images/@Html.DisplayFor(model => model.HinhAnh)" style="height:300px; width: 400px" />
+        </dd>
+
+        <dt>
+            Nội dung
+        </dt>
+
+        <dd>
+            @Html.Raw(Model.NoiDung)
+        </dd>
+
+        <dt>
+            Thể loại: @Html.DisplayFor(model => model.LoaiTin.TenLoai)
+        </dt>
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> &emsp;
+            <button type="submit" class="btn btn-default">@Html.ActionLink("Trở về", "Index")</button>
+        </div>
+    }
+</div>

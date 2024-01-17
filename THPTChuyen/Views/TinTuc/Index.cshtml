@@ -1,0 +1,153 @@
+﻿@model THPTChuyen.Models.HomeModel
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .box-tintuc {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .title_tintuc {
+        width: 100%;
+        background-color: #447cbb;
+    }
+
+        .title_tintuc h1 {
+            font-size: 18px;
+            color: white;
+            margin-left: 20px;
+        }
+
+    .content_tintuc {
+        display: grid;
+        grid-template-columns: auto auto auto auto;
+        row-gap: 20px;
+        margin: 10px;
+    }
+
+    .img_tintuc {
+        height: 150px;
+        width: 220px;
+        margin-top: 10px;
+    }
+
+    .chill_tintuc {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 250px;
+        height: 300px;
+        border: 1px rgb(94, 117, 144, 0.5) solid;
+        border-radius: 5px;
+        background-color: #f7fcff;
+    }
+
+    .tieude_tintuc p {
+        font-size: 14px;
+        font-weight: bold;
+        color: black;
+        width: 220px;
+        text-align: left;
+    }
+</style>
+<div class="container-sidebar">
+    <div class="box-img">
+        <img class="banner-img" src="~/Content/Main/image/bander.jpg" alt="" />
+    </div>
+    <div class="container-menu">
+        <div class="dropdown">
+            <button class="dropbtn"><a href="@Url.Content("~/Home/Index")"><i class="fa-solid fa-house"></i></a></button>
+        </div>
+        <div class="dropdown">
+            <button class="dropbtn"><a href="#">Giới thiệu</a></button>
+            <div class="dropdown-content">
+                <a href="@Url.Content("~/GioiThieu/Index")">Lịch sử phát triển</a>
+                <a href="@Url.Content("~/GioiThieu/nhiemvu")">Chức năng - nhiệm vụ</a>
+                <a href="@Url.Content("~/GioiThieu/phancong")">Phân công nhiệm vụ</a>
+            </div>
+        </div>
+        <div class="dropdown">
+            <button class="dropbtn"><a href="#">Tổ chức</a></button>
+            <div class="dropdown-content">
+                @foreach (var item in Model.listToChuc)
+                {
+                    @Html.ActionLink(item.TenToChuc, "Index", "GiaoVien", new { @id = item.MaToChuc }, null)
+                }
+            </div>
+        </div>
+        <div class="dropdown">
+            <button class="dropbtn"><a href="#">Tin tức</a></button>
+            <div class="dropdown-content">
+                @foreach (var item in Model.listLoaitintuc)
+                {
+                    @Html.ActionLink(item.TenLoai, "Index", "TinTuc", new { @id = item.MaLoaiTin }, null)
+                }
+            </div>
+        </div>
+        <div class="dropdown">
+            <button class="dropbtn"><a href="#">Văn bản</a></button>
+            <div class="dropdown-content">
+                @foreach (var item in Model.listLoaivanban)
+                {
+                    @Html.ActionLink(item.TenLoaiVanBan, "Index", "VanBan", new { @id = item.MaLoaiVanBan }, null)
+                }
+            </div>
+        </div>
+        <div class="dropdown">
+            <button class="dropbtn"><a href="#">Đề thi</a></button>
+            <div class="dropdown-content">
+                <a href="#">Đề thi học kỳ và chuyên môn</a>
+                <a href="#">Thi thử đại học</a>
+            </div>
+        </div>
+        <div class="dropdown">
+            <button class="dropbtn"><a href="@Url.Content("~/HinhAnh/Index")">Hình ảnh</a></button>
+        </div>
+        <div class="dropdown">
+            <button class="dropbtn"><a href="#">Thành viên</a></button>
+            <div class="dropdown-content">
+                <a href="#">Đăng nhập</a>
+                <a href="#">Đăng ký</a>
+            </div>
+        </div>
+        <div class="dropdown">
+            <button class="dropbtn"><a href="#">Liên hệ</a></button>
+        </div>
+        <div class="dropdown">
+            <button class="dropbtn"><a href="#">Kỷ yếu 50 năm</a></button>
+        </div>
+    </div>
+    <div class="date-search">
+        <div class="date-time" id="date"></div>
+        <div class="search">
+            <input class="input-search" type="text" placeholder="Tìm kiếm...">
+            <button type="button" class="button-search"><i class="fa-solid fa-magnifying-glass"></i></button>
+        </div>
+    </div>
+</div>
+<div class="box-tintuc">
+    <div class="title_tintuc">
+        @foreach (var item in Model.loaitin.Take(1))
+        {
+            <h1>@item.TenLoai</h1>
+        }
+    </div>
+    <div class="content_tintuc">
+        @foreach (var item in Model.tintuc)
+        {
+            <a class="chill_tintuc" href="@Url.Content("~/TinTuc/Chitiet")/@item.MaTinTuc">
+                <div>
+                    <img class="img_tintuc" src="~/images/@item.HinhAnh" alt="">
+                </div>
+                <div class="tieude_tintuc">
+                    <p>@item.TieuDe</p>
+                </div>
+            </a>
+        }
+
+    </div>
+</div>

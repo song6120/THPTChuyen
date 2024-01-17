@@ -1,0 +1,63 @@
+﻿@model THPTChuyen.Models.GioiThieu
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>GioiThieu</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.MaGioiThieu)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.LichSuPhatTrien, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <textarea class="form-control" name="LichSuPhatTrien" id="noiDung">@Model.LichSuPhatTrien</textarea>
+                @Html.ValidationMessageFor(model => model.LichSuPhatTrien, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.NhiemVu, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <textarea class="form-control" name="NhiemVu" id="noiDung1">@Model.NhiemVu</textarea>
+                @Html.ValidationMessageFor(model => model.NhiemVu, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PhanCong, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <textarea class="form-control" name="PhanCong" id="noiDung2">@Model.PhanCong</textarea>
+                @Html.ValidationMessageFor(model => model.PhanCong, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Lưu" class="btn btn-default" /> &emsp;
+                <button type="submit" class="btn btn-default">@Html.ActionLink("Trở về", "Index")</button>
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    
+</div>
+@section scripts{
+    <script>
+        CKEDITOR.replace("noiDung");
+        CKEDITOR.replace("noiDung2");
+        CKEDITOR.replace("noiDung1");
+    </script>
+
+}

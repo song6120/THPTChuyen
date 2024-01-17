@@ -1,0 +1,40 @@
+﻿@model IEnumerable<THPTChuyen.Models.DeThi>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Đề thi</h2>
+
+<p>
+    <button style="border: 1px solid #cb0c9f; border-radius: 5px; padding: 6px 12px; background: white ">@Html.ActionLink("Thêm mới", "Create")</button>
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Tiêu đề
+        </th>
+        <th>
+            Nội dung
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.TieuDe)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DuongDan)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.MaDeThi }) |
+            @Html.ActionLink("Details", "Details", new { id=item.MaDeThi }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.MaDeThi })
+        </td>
+    </tr>
+}
+
+</table>

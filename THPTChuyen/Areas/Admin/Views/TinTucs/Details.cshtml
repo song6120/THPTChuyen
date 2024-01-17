@@ -1,0 +1,53 @@
+﻿@model THPTChuyen.Models.TinTuc
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Chi tiết</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Tiêu đề
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TieuDe)
+        </dd>
+
+        <dt>
+            Hình ảnh
+        </dt>
+
+        <dd>
+            
+            <img src="~/images/@Html.DisplayFor(model => model.HinhAnh)" style="height:300px; width: 400px"/>
+        </dd>
+
+        <dt>
+            Nội dung
+        </dt>
+
+        <dd style="color:black">
+            @Html.Raw(Model.NoiDung)
+        </dd>
+
+        <dt>
+            Thể loại
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LoaiTin.TenLoai)
+        </dd>
+
+    </dl>
+</div>
+<div class="form-group">
+    <div class="col-md-offset-2 col-md-10">
+        <button type="submit" class="btn btn-default">@Html.ActionLink("Sửa ", "Edit", new { id = Model.MaTinTuc })</button> &emsp;
+        <button type="submit" class="btn btn-default">@Html.ActionLink("Trở về", "Index")</button>
+    </div>
+</div>

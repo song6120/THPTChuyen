@@ -1,0 +1,102 @@
+﻿@model PagedList.IPagedList<THPTChuyen.Models.GiaoVien>
+@using PagedList.Mvc
+
+@{
+    ViewBag.Title = "Giáo viên";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Giáo viên</h2>
+<style>
+    .styled-table {
+        border-collapse: collapse;
+        margin: 25px 0;
+        font-size: 0.9em;
+        font-family: sans-serif;
+        width: 100%;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    }
+
+        .styled-table thead tr {
+            background-color: #009879;
+            color: #ffffff;
+            text-align: left;
+        }
+
+        .styled-table th,
+        .styled-table td {
+            padding: 12px 15px;
+        }
+
+        .styled-table tbody tr {
+            border-bottom: 1px solid #dddddd;
+        }
+
+            .styled-table tbody tr:nth-of-type(even) {
+                background-color: #f3f3f3;
+            }
+
+            .styled-table tbody tr:last-of-type {
+                border-bottom: 2px solid #009879;
+            }
+
+            .styled-table tbody tr.active-row {
+                font-weight: bold;
+                color: #009879;
+            }
+</style>
+<p>
+    <button style="border: 1px solid #cb0c9f; border-radius: 5px; padding: 6px 12px; background: white ">@Html.ActionLink("Thêm giáo viên", "Create")</button>
+</p>
+<table class="styled-table">
+    <thead>
+        <tr>
+            <th>
+                Họ tên
+            </th>
+            <th>
+                Avatar
+            </th>
+            <th>
+                Điện thoại
+            </th>
+            <th>
+                Email
+            </th>
+            <th>
+                Chức vụ
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TenGiaoVien)
+                </td>
+                <td>
+                    <img src="~/UploadFile/Image/@Html.DisplayFor(modelItem => item.avatar)" style="height:70px;width:60px" />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SDT)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ChucVu.TenChucVu)
+                </td>
+
+                <td>
+                    @Html.ActionLink("Sửa", "Edit", new { id = item.MaGiaoVien }) |
+                    @Html.ActionLink("Chi tiết", "Details", new { id = item.MaGiaoVien }) |
+                    @Html.ActionLink("Xóa", "Delete", new { id = item.MaGiaoVien })
+                </td>
+            </tr>
+        }
+    </tbody>
+
+</table>
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page }))

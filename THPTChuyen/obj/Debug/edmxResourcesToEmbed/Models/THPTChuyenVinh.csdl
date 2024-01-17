@@ -1,0 +1,201 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="THPTChuyenVinhModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="ChucVu">
+    <Key>
+      <PropertyRef Name="MaChucVu" />
+    </Key>
+    <Property Name="MaChucVu" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TenChucVu" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="GiaoViens" Relationship="Self.FK_GiaoVien_ChucVu" FromRole="ChucVu" ToRole="GiaoVien" />
+  </EntityType>
+  <EntityType Name="DeThi">
+    <Key>
+      <PropertyRef Name="MaDeThi" />
+    </Key>
+    <Property Name="MaDeThi" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TieuDe" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="DuongDan" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="GiaoVien">
+    <Key>
+      <PropertyRef Name="MaGiaoVien" />
+    </Key>
+    <Property Name="MaGiaoVien" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TenGiaoVien" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="NgaySinh" Type="DateTime" Precision="0" />
+    <Property Name="QueQuan" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="DiaChi" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="SDT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TotNghiep" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="ChuyenNganh" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CongTacNam" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="MaChucVu" Type="Int32" />
+    <Property Name="MaToChuc" Type="Int32" />
+    <NavigationProperty Name="ChucVu" Relationship="Self.FK_GiaoVien_ChucVu" FromRole="GiaoVien" ToRole="ChucVu" />
+    <NavigationProperty Name="ToChuc" Relationship="Self.FK_GiaoVien_ToChuc" FromRole="GiaoVien" ToRole="ToChuc" />
+    <Property Name="avatar" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="GioiThieu">
+    <Key>
+      <PropertyRef Name="MaGioiThieu" />
+    </Key>
+    <Property Name="MaGioiThieu" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="LichSuPhatTrien" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="NhiemVu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhanCong" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="KyYeu50Nam">
+    <Key>
+      <PropertyRef Name="MaKyYeu50Nam" />
+    </Key>
+    <Property Name="MaKyYeu50Nam" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NoiDung" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="NgayDang" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="LienHe">
+    <Key>
+      <PropertyRef Name="MaLienHe" />
+    </Key>
+    <Property Name="MaLienHe" Type="Int32" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="SDT" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="DiaChi" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="FaceBook" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="LoaiTin">
+    <Key>
+      <PropertyRef Name="MaLoaiTin" />
+    </Key>
+    <Property Name="MaLoaiTin" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TenLoai" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="TinTucs" Relationship="Self.FK_TinTuc_LoaiTin" FromRole="LoaiTin" ToRole="TinTuc" />
+  </EntityType>
+  <EntityType Name="LoaiVanBan">
+    <Key>
+      <PropertyRef Name="MaLoaiVanBan" />
+    </Key>
+    <Property Name="MaLoaiVanBan" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TenLoaiVanBan" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="VanBans" Relationship="Self.FK_VanBan_LoaiVanBan" FromRole="LoaiVanBan" ToRole="VanBan" />
+  </EntityType>
+  <EntityType Name="QuanLy">
+    <Key>
+      <PropertyRef Name="MaQuanLy" />
+    </Key>
+    <Property Name="MaQuanLy" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TaiKhoan" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="MatKhau" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TinTuc">
+    <Key>
+      <PropertyRef Name="MaTinTuc" />
+    </Key>
+    <Property Name="MaTinTuc" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TieuDe" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="HinhAnh" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="NoiDung" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="MaLoaiTin" Type="Int32" />
+    <NavigationProperty Name="LoaiTin" Relationship="Self.FK_TinTuc_LoaiTin" FromRole="TinTuc" ToRole="LoaiTin" />
+  </EntityType>
+  <EntityType Name="ToChuc">
+    <Key>
+      <PropertyRef Name="MaToChuc" />
+    </Key>
+    <Property Name="MaToChuc" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TenToChuc" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="GiaoViens" Relationship="Self.FK_GiaoVien_ToChuc" FromRole="ToChuc" ToRole="GiaoVien" />
+  </EntityType>
+  <EntityType Name="VanBan">
+    <Key>
+      <PropertyRef Name="MaVanBan" />
+    </Key>
+    <Property Name="MaVanBan" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TieuDe" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="KiHieu" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="NgayBanHanh" Type="DateTime" Precision="0" />
+    <Property Name="NgayHieuLuc" Type="DateTime" Precision="0" />
+    <Property Name="MaLoaiVanBan" Type="Int32" />
+    <Property Name="NguoiKy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DuongDan" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="LoaiVanBan" Relationship="Self.FK_VanBan_LoaiVanBan" FromRole="VanBan" ToRole="LoaiVanBan" />
+  </EntityType>
+  <Association Name="FK_GiaoVien_ChucVu">
+    <End Role="ChucVu" Type="Self.ChucVu" Multiplicity="0..1" />
+    <End Role="GiaoVien" Type="Self.GiaoVien" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ChucVu">
+        <PropertyRef Name="MaChucVu" />
+      </Principal>
+      <Dependent Role="GiaoVien">
+        <PropertyRef Name="MaChucVu" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GiaoVien_ToChuc">
+    <End Role="ToChuc" Type="Self.ToChuc" Multiplicity="0..1" />
+    <End Role="GiaoVien" Type="Self.GiaoVien" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ToChuc">
+        <PropertyRef Name="MaToChuc" />
+      </Principal>
+      <Dependent Role="GiaoVien">
+        <PropertyRef Name="MaToChuc" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TinTuc_LoaiTin">
+    <End Role="LoaiTin" Type="Self.LoaiTin" Multiplicity="0..1" />
+    <End Role="TinTuc" Type="Self.TinTuc" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LoaiTin">
+        <PropertyRef Name="MaLoaiTin" />
+      </Principal>
+      <Dependent Role="TinTuc">
+        <PropertyRef Name="MaLoaiTin" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_VanBan_LoaiVanBan">
+    <End Role="LoaiVanBan" Type="Self.LoaiVanBan" Multiplicity="0..1" />
+    <End Role="VanBan" Type="Self.VanBan" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LoaiVanBan">
+        <PropertyRef Name="MaLoaiVanBan" />
+      </Principal>
+      <Dependent Role="VanBan">
+        <PropertyRef Name="MaLoaiVanBan" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="THPTChuyenVinhEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="ChucVus" EntityType="Self.ChucVu" />
+    <EntitySet Name="DeThis" EntityType="Self.DeThi" />
+    <EntitySet Name="GiaoViens" EntityType="Self.GiaoVien" />
+    <EntitySet Name="GioiThieux" EntityType="Self.GioiThieu" />
+    <EntitySet Name="KyYeu50Nam" EntityType="Self.KyYeu50Nam" />
+    <EntitySet Name="LienHes" EntityType="Self.LienHe" />
+    <EntitySet Name="LoaiTins" EntityType="Self.LoaiTin" />
+    <EntitySet Name="LoaiVanBans" EntityType="Self.LoaiVanBan" />
+    <EntitySet Name="QuanLies" EntityType="Self.QuanLy" />
+    <EntitySet Name="TinTucs" EntityType="Self.TinTuc" />
+    <EntitySet Name="ToChucs" EntityType="Self.ToChuc" />
+    <EntitySet Name="VanBans" EntityType="Self.VanBan" />
+    <AssociationSet Name="FK_GiaoVien_ChucVu" Association="Self.FK_GiaoVien_ChucVu">
+      <End Role="ChucVu" EntitySet="ChucVus" />
+      <End Role="GiaoVien" EntitySet="GiaoViens" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GiaoVien_ToChuc" Association="Self.FK_GiaoVien_ToChuc">
+      <End Role="ToChuc" EntitySet="ToChucs" />
+      <End Role="GiaoVien" EntitySet="GiaoViens" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TinTuc_LoaiTin" Association="Self.FK_TinTuc_LoaiTin">
+      <End Role="LoaiTin" EntitySet="LoaiTins" />
+      <End Role="TinTuc" EntitySet="TinTucs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_VanBan_LoaiVanBan" Association="Self.FK_VanBan_LoaiVanBan">
+      <End Role="LoaiVanBan" EntitySet="LoaiVanBans" />
+      <End Role="VanBan" EntitySet="VanBans" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

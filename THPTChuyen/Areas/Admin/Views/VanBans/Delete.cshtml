@@ -1,0 +1,49 @@
+﻿@model THPTChuyen.Models.VanBan
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h3>Bạn chắc chắn muốn xóa không?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Tiêu đề: @Html.DisplayFor(model => model.TieuDe)
+        </dt>
+
+        <dt>
+            Kí hiệu: @Html.DisplayFor(model => model.KiHieu)
+        </dt>
+
+        <dt>
+            Ngày ban hành: @Html.DisplayFor(model => model.NgayBanHanh)
+        </dt>
+
+        <dt>
+            Ngày hiệu lực: @Html.DisplayFor(model => model.NgayHieuLuc)
+        </dt>
+        <dt>
+            Người ký: @Html.DisplayFor(model => model.NguoiKy)
+        </dt>
+
+        <dt>
+            <iframe style="width:600px; height:700px" src="~/UploadFile/File/@Model.DuongDan"></iframe>
+        </dt>
+
+        <dt>
+            Thể loại: @Html.DisplayFor(model => model.LoaiVanBan.TenLoaiVanBan)
+        </dt>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> &emsp;
+            <button type="submit", class="btn btn-default">@Html.ActionLink("Trở về", "Index")</button>
+        </div>
+    }
+</div>
